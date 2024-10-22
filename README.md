@@ -80,9 +80,9 @@ TOTAL CLASS AVERAGE => 84.50%
 ```
 
 #### **Data Structures Used**:
-- `char students_names[10][128]`: Stores the names of the students.
-- `char test_names[10][2][128]`: Stores the names of the tests for each student.
-- `double test_scores[10][2]`: Stores the test scores for each student.
+- `char students_names[student_count][128]`: Stores the names of the students.
+- `char test_names[student_count][test_count][128]`: Stores the names of the tests for each student.
+- `double test_scores[student_count][test_count]`: Stores the test scores for each student.
 - `double total_average`: Accumulates the class average.
 
 ---
@@ -105,9 +105,9 @@ if (argc < 3) {
 #### **2. Variable Initialization:**
 The program then initializes variables to store student names, test names, and test scores. Arrays of fixed size (`10` students and `2` tests) are used to store this information:
 ```c
-char students_names[10][128];
-char test_names[10][2][128];
-double test_scores[10][2];
+char students_names[student_count][128];
+char test_names[student_count][test_count][128];
+double test_scores[student_count][test_count];
 double total_average = 0;
 ```
 

@@ -17,13 +17,13 @@ int main(int argc, char *argv[]) {
     int test_count = atoi(argv[2]);
 
     // Create students_names variable to store the name of students
-    char students_names[10][128];
+    char students_names[student_count][128];
 
     // Create test_names variable to store the tests' names
-    char test_names[10][2][128];
+    char test_names[10][test_count][128];
 
     // Create test_scores variable to store the tests' scores
-    double test_scores[10][2];
+    double test_scores[10][test_count];
 
     // Create total_average variable to store the class' average
     double total_average;
@@ -72,8 +72,8 @@ int main(int argc, char *argv[]) {
             printf("%.2lf%%]", test_scores[i][j]);
             sum += test_scores[i][j];
         }
-        printf("  [Average -> %.2lf%%]",  sum/2);
-        total_average += sum/2;
+        printf("  [Average -> %.2lf%%]",  sum / test_count);
+        total_average += sum / test_count;
     }
     printf("\n");
 
