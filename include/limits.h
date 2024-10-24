@@ -1,9 +1,9 @@
 #ifndef LIMITS_H
 #define LIMITS_H
 
-#define TESTS_COUNT 2
-#define UNITS_COUNT 2
-#define STUDENTS_COUNT 2
-#define MAX_NAME_SIZE 128
+#define TESTS_COUNT 1
+#define UNITS_COUNT 1
+#define STUDENTS_COUNT 1
+#define MAX_SIZE 128
 
 #endif

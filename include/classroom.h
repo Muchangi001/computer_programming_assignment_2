@@ -11,7 +11,7 @@ struct Classroom {
     struct Student *head;
     struct Student *tail;
     
-    char units_names[UNITS_COUNT][MAX_NAME_SIZE];
+    char units_names[UNITS_COUNT][MAX_SIZE];
 
     unsigned students_count;
     unsigned units_count;
@@ -20,9 +20,17 @@ struct Classroom {
 
     // methods
     void (*init) ();
+    void (*greetUser) ();
     struct Student * (*newStudent) (); // to create a student node
     void (*appendStudent) (struct Student *s);
+    void (*promptUnitNames)();
+    void (*promptStudentDetails)();
+    void (*updateStudentUnitNames)();
+    void (*computeStudentDetails)();
+    void (*printStudentDetails)();
     void (*freeMemory) ();
+
+    
 };
 
 extern struct Classroom classroom;
