@@ -6,7 +6,7 @@ struct Student * newStudent();
 void appendStudent(struct Student *s);
 void promptUnitNames();
 void promptStudentDetails();
-void updateStudentUnitNames();
+void updateStudentUnits();
 void computeStudentDetails();
 void printStudentDetails();
 void freeMemory();
@@ -20,7 +20,7 @@ struct Classroom classroom = {
     .appendStudent = &appendStudent,
     .promptUnitNames = &promptUnitNames,
     .promptStudentDetails = &promptStudentDetails,
-    .updateStudentUnitNames = &updateStudentUnitNames,
+    .updateStudentUnits = &updateStudentUnits,
     .computeStudentDetails = &computeStudentDetails,
     .printStudentDetails = &printStudentDetails,
     .freeMemory = &freeMemory,
@@ -40,9 +40,13 @@ void promptUnitNames() {
     // Prompt the user to enter the names of units
     printf("Enter the units' names (NOTE : WILL APPLY TO EVERY STUDENT)\n\n");
     for (size_t i = 0; i < classroom.units_count; ++i) {
-        printf("Unit [%zu] : ", i + 1); // Prompt user to enter test name
+        printf("Unit [%zu] : ", i + 1); // Prompt user to enter unit name
         fgets(classroom.units_names[i], sizeof(classroom.units_names[i]), stdin); // Reading input
         classroom.units_names[i][strcspn(classroom.units_names[i], "\n")] = '\0'; // Removing newline character inserted by fgets()
+
+        printf("%s unit code : ", classroom.units_names[i]); // Prompt user to enter unit code
+        fgets(classroom.units_code[i], sizeof(classroom.units_code[i]), stdin);
+        classroom.units_code[i][strcspn(classroom.units_names[i], "\n")] = '\0';
     }
 }
 
@@ -71,13 +75,14 @@ struct Student * newStudent() {
     return malloc(sizeof(struct Student)); // allocate memory for a new student node
 }
 
-void updateStudentUnitNames() {
+void updateStudentUnits() {
     // Update students' details to have same units
     struct Student *curr = classroom.head;
     size_t i = 0;
     while (curr) {
         for (size_t i = 0; i < classroom.units_count; ++i) {
             strcpy(curr->units.units[i].name, classroom.units_names[i]);
+            strcpy(curr->units.units[i].code, classroom.units_code[i]);
         }
         curr = curr->next;
     }
@@ -125,11 +130,11 @@ void printStudentDetails() {
     struct Student *curr = classroom.head;
     while (curr) {
         printf("\n");
-        printf("%s      ", curr->name); // Print name
+        printf("%s      ", curr->name); // Print student name
         for (size_t i = 0; i < classroom.units_count; ++i) {
-            printf("%s average : %.2lf%%       ", curr->units.units[i].name, curr->units.units[i].score);
+            printf("%s [%s] average : %.2lf%%       \n\n", curr->units.units[i].name, curr->units.units[i].code, curr->units.units[i].score);
         }
-        printf("\n\n");
+
         for (size_t i = 0; i < classroom.units_count; ++i) {
             printf("            ");
             for (size_t j = 0; j < classroom.tests_count; ++j) {

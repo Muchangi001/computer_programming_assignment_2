@@ -15,6 +15,7 @@ struct Classroom {
 
     unsigned students_count;
     unsigned units_count;
+    char units_code[UNITS_COUNT][MAX_SIZE]; // unit code
     unsigned tests_count;
     double average_score;
 
@@ -25,7 +26,7 @@ struct Classroom {
     void (*appendStudent) (struct Student *s);
     void (*promptUnitNames)();
     void (*promptStudentDetails)();
-    void (*updateStudentUnitNames)();
+    void (*updateStudentUnits)();
     void (*computeStudentDetails)();
     void (*printStudentDetails)();
     void (*freeMemory) ();
